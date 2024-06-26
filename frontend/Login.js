@@ -29,7 +29,7 @@ export default function Login() {
           },
         ]);
       } else {
-        Alert.alert('Notice', 'Invalid Login!', [{ text: 'Close' }]);
+        Alert.alert('Notice', 'Invalid Logins!', [{ text: 'Close' }]);
       }
     } catch (err) {
       console.error('Login error:', err.message);
