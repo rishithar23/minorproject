@@ -13,10 +13,8 @@ export default function Announcements() {
           <Text style={styles.sectionContent}>Here is the time table...</Text>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Holidays</Text>
-          <Text style={styles.sectionContent}>List of upcoming holidays...</Text>
-        </View>
+
+       
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Assignments</Text>
