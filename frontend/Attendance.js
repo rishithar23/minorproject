@@ -8,7 +8,7 @@ export default function Attendance() {
   const [attendanceMarked, setAttendanceMarked] = useState(false);
   const [otp, setOtp] = useState('');
   const [generatedOtp, setGeneratedOtp] = useState('');
-  const [studentAttendance, setStudentAttendance] = useState('85%');
+  const [studentAttendance, setStudentAttendance] = useState('88%'); // Updated percentage to match the image
 
   useEffect(() => {
     let timer;
@@ -84,7 +84,8 @@ export default function Attendance() {
         </View>
 
         <View style={styles.attendanceContainer}>
-          <Text style={styles.attendanceText}>Total Attendance: {studentAttendance}</Text>
+          <Text style={styles.attendancePercentage}>{studentAttendance}</Text>
+          <Text style={styles.attendanceMessage}>You have a good attendance percentage. Keep it up!</Text>
         </View>
       </ScrollView>
     </LinearGradient>
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     marginBottom: 30,
-    color: '#fff',
+    color: '#480ddb', // Changed color to match the screenshot
     fontWeight: 'bold',
   },
   section: {
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     marginBottom: 10,
-    color: '#fff',
+    color: '#480ddb', // Changed color to match the screenshot
     fontWeight: 'bold',
   },
   button: {
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   buttonText: {
-    color: '#480ddb',
+    color: '#480ddb', // Changed color to match the screenshot
     fontSize: 16,
     fontWeight: 'bold',
   },
@@ -156,17 +157,27 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   attendanceContainer: {
-    width: '100%',
-    padding: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    width: '90%',
+    padding: 20,
+    backgroundColor: '#fff',
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#ddd',
     alignItems: 'center',
     marginTop: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
   },
-  attendanceText: {
-    fontSize: 18,
-    color: '#fff',
+  attendancePercentage: {
+    fontSize: 48,
+    color: '#480ddb', // Changed color to match the screenshot
+    fontWeight: 'bold',
+  },
+  attendanceMessage: {
+    fontSize: 16,
+    color: '#333',
+    textAlign: 'center',
+    marginTop: 10,
   },
 });

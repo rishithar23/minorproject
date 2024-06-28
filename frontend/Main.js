@@ -19,7 +19,7 @@ export default function Main() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Text style={styles.title}>Student Profile</Text>
         <Image 
-          source={require('st.jpeg')} 
+          source={{ uri: 'st.jpeg' }} 
           style={styles.image}
         />
         <TextInput

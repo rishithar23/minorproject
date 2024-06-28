@@ -32,7 +32,7 @@ export default function NavMain() {
         tabBarActiveTintColor: 'black',
         tabBarInactiveTintColor: 'gray',
         tabBarStyle:[ {
-          display: 'flex' // Adjusted tabBarStyle
+          display: 'flex' ,// Adjusted tabBarStyle
         },
         null]
       }}

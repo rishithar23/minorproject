@@ -16,24 +16,20 @@ export default function Announcements({ navigation }) {
         {/* <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Attendance')}>
           <Text style={styles.sectionTitle}>Attendance</Text>
           <Text style={styles.sectionContent}>Check your attendance...</Text>
-        </TouchableOpacity> */}
-
-
-       
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Assignments</Text>
-          <Text style={styles.sectionContent}>Details about current assignments...</Text>
-        </View>
+        </TouchableOpacity> */} 
+        <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Messages')}>
+          <Text style={styles.sectionTitle}>Messages</Text>
+          <Text style={styles.sectionContent}>Important messages and notifications...</Text>
+        </TouchableOpacity>
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Notes</Text>
           <Text style={styles.sectionContent}>Class notes and materials...</Text>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Messages</Text>
-          <Text style={styles.sectionContent}>Important messages and notifications...</Text>
+        <View style={styles.section}> 
+          <Text style={styles.sectionTitle}>Assignments</Text>
+          <Text style={styles.sectionContent}>Post your assignments before the deadline...</Text>
         </View>
       </ScrollView>
     </LinearGradient>
