@@ -22,7 +22,7 @@ export default function Main() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Text style={styles.title}>Student Profile</Text>
         <Image 
-          source={{ uri: '/minorproject/st.jpeg' }} 
+          source={{ uri: 'st.jpeg' }} 
           style={styles.image}
         />
         <View style={styles.detailsContainer}>

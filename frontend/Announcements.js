@@ -13,27 +13,31 @@ export default function Announcements({ navigation }) {
           <Text style={styles.sectionContent}>Here is the time table...</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Attendance')}>
+        <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Attendance_1')}>
           <Text style={styles.sectionTitle}>Attendance</Text>
           <Text style={styles.sectionContent}>Check your attendance...</Text>
         </TouchableOpacity>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Holidays</Text>
-          <Text style={styles.sectionContent}>List of upcoming holidays...</Text>
-        </View>
+        <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Notes')}>
+          <Text style={styles.sectionTitle}>Notes</Text>
+          <Text style={styles.sectionContent}>Class notes and materials....</Text>
+        </TouchableOpacity>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Assignments</Text>
-          <Text style={styles.sectionContent}>Details about current assignments...</Text>
-        </View>
+        <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Messages')}>
+          <Text style={styles.sectionTitle}>Messages</Text>
+          <Text style={styles.sectionContent}>Important messages and notifications..</Text>
+        </TouchableOpacity>
+
+        
+
+        
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Notes</Text>
           <Text style={styles.sectionContent}>Class notes and materials...</Text>
         </View>
 
-        <View style={styles.section}>
+        <View style={styles.section}> 
           <Text style={styles.sectionTitle}>Messages</Text>
           <Text style={styles.sectionContent}>Important messages and notifications...</Text>
         </View>
