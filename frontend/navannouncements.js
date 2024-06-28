@@ -3,13 +3,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Announcements from './Announcements';
 import TimeTable from './TimeTable';
-import Attendance from './Attendance';
+import Attendance from './Attendance_1';
 import Notes from './Notes';
 import Messages from './Messages'
 
 const Stack = createStackNavigator();
 
-export default function App() {
+export default function navannouncements() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Announcements">
