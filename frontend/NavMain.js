@@ -1,7 +1,7 @@
 import React from 'react';
 import Main from './Main';
 import Announcements from './Announcements';
-import Attendance from './Attendance';
+import Attendance from './first_Attendance'; // Adjusted import
 import Grades from './Grades';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -31,11 +31,9 @@ export default function NavMain() {
       tabBarOptions={{
         tabBarActiveTintColor: 'black',
         tabBarInactiveTintColor: 'gray',
-        tabBarStyle: [
-           {
-          display: 'flex'
+        tabBarStyle: {
+          display: 'flex' // Adjusted tabBarStyle
         },
-        null ]
       }}
     >
       <Tab.Screen name="Profile" component={Main} options={{ headerShown: true }} />

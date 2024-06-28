@@ -1,17 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-export default function Announcements() {
+export default function Announcements({ navigation }) {
   return (
     <LinearGradient colors={['#480ddb', '#3a00a6']} style={styles.gradientContainer}>
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Announcements</Text>
 
-        <View style={styles.section}>
+        <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('TimeTable')}>
           <Text style={styles.sectionTitle}>Time Table</Text>
           <Text style={styles.sectionContent}>Here is the time table...</Text>
-        </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Attendance')}>
+          <Text style={styles.sectionTitle}>Attendance</Text>
+          <Text style={styles.sectionContent}>Check your attendance...</Text>
+        </TouchableOpacity>
 
 
        
@@ -48,14 +53,14 @@ const styles = StyleSheet.create({
     fontSize: 28,
     marginBottom: 30,
     textAlign: 'center',
-    color: '#fff', // White color for title
+    color: '#fff',
     fontWeight: 'bold',
   },
   section: {
     width: '90%',
     marginBottom: 20,
     padding: 20,
-    backgroundColor: '#7a5fff', // Light purple background
+    backgroundColor: '#7a5fff',
     borderRadius: 15,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
@@ -66,11 +71,11 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 22,
     marginBottom: 10,
-    color: '#fff', // White color for section titles
+    color: '#fff',
     fontWeight: 'bold',
   },
   sectionContent: {
     fontSize: 18,
-    color: '#f0e6ff', // Light color for content
+    color: '#f0e6ff',
   },
 });

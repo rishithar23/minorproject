@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Image, ScrollView } from 'react-native';
+// Main.js
+import React from 'react';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Main() {
-  const [name, setName] = useState('');
-  const [rollNo, setRollNo] = useState('');
-  const [year, setYear] = useState('');
-  const [section, setSection] = useState('');
-  const [department, setDepartment] = useState('');
-  const [email, setEmail] = useState('');
+  // Hardcoded student details
+  const studentDetails = {
+    name: 'Ravi Kumar',
+    rollNo: 'B12345',
+    year: '2nd Year',
+    section: 'B',
+    department: 'Information Technology',
+    email: 'ravi.kumar@bvrit.edu.in',
+  };
 
   return (
     <LinearGradient
@@ -18,7 +22,7 @@ export default function Main() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Text style={styles.title}>Student Profile</Text>
         <Image 
-          source={{ uri: 'https://via.placeholder.com/150' }} 
+          source={{ uri: '/minorproject/st.jpeg' }} 
           style={styles.image}
         />
         <TextInput
@@ -42,13 +46,13 @@ export default function Main() {
           onChangeText={setYear}
           placeholderTextColor="#ddd"
         />
-        {/* <TextInput
+        <TextInput
           style={styles.input}
           placeholder="Section"
           value={section}
           onChangeText={setSection}
           placeholderTextColor="#ddd"
-        /> */}
+        />
         <TextInput
           style={styles.input}
           placeholder="Department"
@@ -97,15 +101,18 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 10,
   },
-  input: {
+  detailsContainer: {
     width: '90%',
-    padding: 15,
-    marginVertical: 10,
+    padding: 20,
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    borderRadius: 25,
+    borderRadius: 15,
     borderWidth: 1,
     borderColor: '#ddd',
+    marginBottom: 30,
+  },
+  detailText: {
+    fontSize: 18,
     color: '#fff',
-    fontSize: 16,
+    marginVertical: 5,
   },
 });
