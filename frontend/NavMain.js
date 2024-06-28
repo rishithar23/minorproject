@@ -1,9 +1,10 @@
+//NavMain.js
 import React from 'react'
 import Main from './Main';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Announcements from './Announcements';
 import {MaterialIcons} from '@expo/vector-icons';
-import Attendance from './Attendance';
+import Attendance from './first_Attendance';
 import Grades from './Grades';
 
 export default function NavMain() {

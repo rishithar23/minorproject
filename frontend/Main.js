@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Image, ScrollView } from 'react-native';
+// Main.js
+import React from 'react';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Main() {
-  const [name, setName] = useState('');
-  const [rollNo, setRollNo] = useState('');
-  const [year, setYear] = useState('');
-  const [section, setSection] = useState('');
-  const [department, setDepartment] = useState('');
-  const [email, setEmail] = useState('');
+  // Hardcoded student details
+  const studentDetails = {
+    name: 'Ravi Kumar',
+    rollNo: 'B12345',
+    year: '2nd Year',
+    section: 'B',
+    department: 'Information Technology',
+    email: 'ravi.kumar@bvrit.edu.in',
+  };
 
   return (
     <LinearGradient
@@ -18,51 +22,17 @@ export default function Main() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Text style={styles.title}>Student Profile</Text>
         <Image 
-          source={{ uri: 'https://via.placeholder.com/150' }} 
+          source={{ uri: '/minorproject/st.jpeg' }} 
           style={styles.image}
         />
-        <TextInput
-          style={styles.input}
-          placeholder="Name"
-          value={name}
-          onChangeText={setName}
-          placeholderTextColor="#ddd"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Roll Number"
-          value={rollNo}
-          onChangeText={setRollNo}
-          placeholderTextColor="#ddd"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Year"
-          value={year}
-          onChangeText={setYear}
-          placeholderTextColor="#ddd"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Section"
-          value={section}
-          onChangeText={setSection}
-          placeholderTextColor="#ddd"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Department"
-          value={department}
-          onChangeText={setDepartment}
-          placeholderTextColor="#ddd"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-          placeholderTextColor="#ddd"
-        />
+        <View style={styles.detailsContainer}>
+          <Text style={styles.detailText}>Name: {studentDetails.name}</Text>
+          <Text style={styles.detailText}>Roll Number: {studentDetails.rollNo}</Text>
+          <Text style={styles.detailText}>Year: {studentDetails.year}</Text>
+          <Text style={styles.detailText}>Section: {studentDetails.section}</Text>
+          <Text style={styles.detailText}>Department: {studentDetails.department}</Text>
+          <Text style={styles.detailText}>Email: {studentDetails.email}</Text>
+        </View>
       </ScrollView>
     </LinearGradient>
   );
@@ -97,15 +67,18 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 10,
   },
-  input: {
+  detailsContainer: {
     width: '90%',
-    padding: 15,
-    marginVertical: 10,
+    padding: 20,
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    borderRadius: 25,
+    borderRadius: 15,
     borderWidth: 1,
     borderColor: '#ddd',
+    marginBottom: 30,
+  },
+  detailText: {
+    fontSize: 18,
     color: '#fff',
-    fontSize: 16,
+    marginVertical: 5,
   },
 });
