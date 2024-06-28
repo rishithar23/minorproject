@@ -42,13 +42,13 @@ export default function Main() {
           onChangeText={setYear}
           placeholderTextColor="#ddd"
         />
-        <TextInput
+        {/* <TextInput
           style={styles.input}
           placeholder="Section"
           value={section}
           onChangeText={setSection}
           placeholderTextColor="#ddd"
-        />
+        /> */}
         <TextInput
           style={styles.input}
           placeholder="Department"
