@@ -31,9 +31,10 @@ export default function NavMain() {
       tabBarOptions={{
         tabBarActiveTintColor: 'black',
         tabBarInactiveTintColor: 'gray',
-        tabBarStyle: {
+        tabBarStyle:[ {
           display: 'flex' // Adjusted tabBarStyle
         },
+        null]
       }}
     >
       <Tab.Screen name="Profile" component={Main} options={{ headerShown: true }} />

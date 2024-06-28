@@ -1,18 +1,15 @@
-// Main.js
-import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, ScrollView, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Main() {
-  // Hardcoded student details
-  const studentDetails = {
-    name: 'Ravi Kumar',
-    rollNo: 'B12345',
-    year: '2nd Year',
-    section: 'B',
-    department: 'Information Technology',
-    email: 'ravi.kumar@bvrit.edu.in',
-  };
+  // Hardcoded student details (example)
+  const [name, setName] = useState('Ravi Kumar');
+  const [rollNo, setRollNo] = useState('B12345');
+  const [year, setYear] = useState('2nd Year');
+  const [section, setSection] = useState('B');
+  const [department, setDepartment] = useState('Information Technology');
+  const [email, setEmail] = useState('ravi.kumar@bvrit.edu.in');
 
   return (
     <LinearGradient
@@ -22,7 +19,7 @@ export default function Main() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Text style={styles.title}>Student Profile</Text>
         <Image 
-          source={{ uri: '/minorproject/st.jpeg' }} 
+          source={require('st.jpeg')} 
           style={styles.image}
         />
         <TextInput
@@ -101,18 +98,13 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 10,
   },
-  detailsContainer: {
-    width: '90%',
-    padding: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    borderRadius: 15,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    marginBottom: 30,
-  },
-  detailText: {
-    fontSize: 18,
+  input: {
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    width: '100%',
+    padding: 10,
+    borderRadius: 5,
     color: '#fff',
-    marginVertical: 5,
+    marginBottom: 10,
+    fontSize: 16,
   },
 });

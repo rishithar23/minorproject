@@ -32,9 +32,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   title: {
-    fontSize: 24,
-    marginBottom: 20,
+    fontSize: 28,
+    marginBottom: 30,
     textAlign: 'center',
+    fontWeight: 'bold',
     color: '#FFFFFF', // White color for title
   },
   section: {

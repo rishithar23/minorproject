@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Alert, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Alert, ScrollView, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Attendance() {
   const [isSessionActive, setIsSessionActive] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [attendanceMarked, setAttendanceMarked] = useState(false);
+  const [otp, setOtp] = useState('');
+  const [generatedOtp, setGeneratedOtp] = useState('');
+  const [studentAttendance, setStudentAttendance] = useState('85%');
 
   useEffect(() => {
     let timer;
@@ -20,17 +23,26 @@ export default function Attendance() {
   }, [isSessionActive, timeRemaining]);
 
   const startAttendanceSession = () => {
+    const otp = generateOtp();
+    setGeneratedOtp(otp);
     setIsSessionActive(true);
     setTimeRemaining(120); // 2 minutes
     setAttendanceMarked(false);
+    Alert.alert('OTP generated', `Your OTP is: ${otp}`);
+  };
+
+  const generateOtp = () => {
+    return Math.floor(1000 + Math.random() * 9000).toString(); // Generates a 4-digit OTP
   };
 
   const markAttendance = () => {
-    if (isSessionActive) {
+    if (isSessionActive && otp === generatedOtp) {
       setAttendanceMarked(true);
       Alert.alert('Attendance marked successfully');
-    } else {
+    } else if (!isSessionActive) {
       Alert.alert('Attendance session is not active');
+    } else {
+      Alert.alert('Wrong OTP');
     }
   };
 
@@ -43,37 +55,36 @@ export default function Attendance() {
         <Text style={styles.title}>Attendance</Text>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Student Profile</Text>
-          <Text style={styles.sectionContent}>Name: Radha</Text>
-          <Text style={styles.sectionContent}>Roll Number: 22211A1215</Text>
-          <Text style={styles.sectionContent}>Year: I</Text>
-          <Text style={styles.sectionContent}>Section: A</Text>
-          <Text style={styles.sectionContent}>Department: Computer Science</Text>
-          <Text style={styles.sectionContent}>Email: radha@example.com</Text>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Attendance</Text>
-          <Text style={styles.sectionContent}>Total Attendance: 85%</Text>
-        </View>
-
-        <View style={styles.section}>
           <Text style={styles.sectionTitle}>Mark Attendance</Text>
           <TouchableOpacity style={styles.button} onPress={startAttendanceSession}>
-            <Text style={styles.buttonText}>Start Attendance Session</Text>
+            <Text style={styles.buttonText}>
+              {isSessionActive ? 'Attendance Session in Progress' : 'Start Attendance Session'}
+            </Text>
           </TouchableOpacity>
           {isSessionActive && (
             <Text style={styles.timer}>Time Remaining: {timeRemaining} seconds</Text>
           )}
+          <TextInput
+            style={styles.input}
+            placeholder="Enter OTP"
+            placeholderTextColor="#bbb"
+            value={otp}
+            onChangeText={setOtp}
+            keyboardType="numeric"
+          />
           <TouchableOpacity 
             style={[styles.button, { backgroundColor: isSessionActive ? '#fff' : '#aaa' }]} 
             onPress={markAttendance} 
             disabled={!isSessionActive || attendanceMarked}
           >
             <Text style={[styles.buttonText, { color: isSessionActive ? '#480ddb' : '#666' }]}>
-              Mark Attendance
+              {attendanceMarked ? 'Attendance Marked' : 'Mark Attendance'}
             </Text>
           </TouchableOpacity>
+        </View>
+
+        <View style={styles.attendanceContainer}>
+          <Text style={styles.attendanceText}>Total Attendance: {studentAttendance}</Text>
         </View>
       </ScrollView>
     </LinearGradient>
@@ -103,16 +114,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#ddd',
+    alignItems: 'center',
   },
   sectionTitle: {
     fontSize: 20,
     marginBottom: 10,
     color: '#fff',
     fontWeight: 'bold',
-  },
-  sectionContent: {
-    fontSize: 16,
-    color: '#eee',
   },
   button: {
     width: '100%',
@@ -137,5 +145,28 @@ const styles = StyleSheet.create({
     color: '#ff0000',
     marginVertical: 10,
     textAlign: 'center',
+  },
+  input: {
+    width: '100%',
+    padding: 15,
+    backgroundColor: '#fff',
+    borderRadius: 25,
+    textAlign: 'center',
+    marginTop: 10,
+    color: '#000',
+  },
+  attendanceContainer: {
+    width: '100%',
+    padding: 16,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  attendanceText: {
+    fontSize: 18,
+    color: '#fff',
   },
 });

@@ -13,10 +13,10 @@ export default function Announcements({ navigation }) {
           <Text style={styles.sectionContent}>Here is the time table...</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Attendance')}>
+        {/* <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('Attendance')}>
           <Text style={styles.sectionTitle}>Attendance</Text>
           <Text style={styles.sectionContent}>Check your attendance...</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
 
        
