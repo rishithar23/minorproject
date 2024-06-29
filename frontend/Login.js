@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -11,42 +11,52 @@ export default function Login() {
   const [password, setPassword] = useState(defaultPassword);
   const navigation = useNavigation();
 
+
   const handleLogin = async () => {
     try {
-      console.log('Logging in with:', email, password); // Log email and password
-      // Simulate API response
-      const res = {
-        token: email === defaultEmail && password === defaultPassword ? 'dummy-token' : null,
-      };
-      console.log('Login response:', res); // Log the response from the simulated API
-      if (res.token) {
-        await AsyncStorage.setItem('userToken', res.token);
-        console.log('Login successful. Token saved:', res.token); // Log the saved token
-        Alert.alert('Notice', 'Login successful !', [
+      const response = await fetch('http://10.0.2.2:8000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        Alert.alert('Success', "Login Success")
+        if(data.message === 'student')
           {
-            text: 'Close',
-            onPress: () => navigation.navigate('Main'),
-          },
-        ]);
+            navigation.navigate("Main", {
+              email: email,
+            })
+          }
+          else
+          {
+            navigation.navigate("TeacherAssignment");
+          }
       } else {
-        Alert.alert('Notice', 'Invalid!', [{ text: 'Close' }]);
+        const errorData = await response.json();
+        Alert.alert('Error', errorData.detail);
       }
     } catch (err) {
-      console.error('Login error:', err.message);
+      console.error('Login error:', err);
       Alert.alert('Notice', 'Login Failed!', [{ text: 'Close' }]);
     }
   };
+
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login Page</Text>
       <TextInput
         style={styles.input}
-        placeholder="Email"
+        placeholder="Username"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
+        placeholderTextColor="#bbb"
       />
       <TextInput
         style={styles.input}
@@ -55,8 +65,11 @@ export default function Login() {
         onChangeText={setPassword}
         secureTextEntry
         autoCapitalize="none"
+        placeholderTextColor="#bbb"
       />
-      <Button title="Login" onPress={handleLogin} />
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -64,23 +77,38 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#462cb0', // Changed background color
-    alignItems: 'center',
+    backgroundColor: '#3B1BBF',
     justifyContent: 'center',
-    padding: 16,
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 24,
-    marginBottom: 20,
-    color: '#fff', // Changed text color to white
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginBottom: 40,
+    paddingBottom: 20,
+  
   },
   input: {
-    width: '100%',
-    padding: 10,
-    marginVertical: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    backgroundColor: '#fff', // Changed input background color to white
+    backgroundColor: '#6D49EF',
+    color: '#FFFFFF',
+    borderRadius: 25,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    paddingBottom: 10,
+    marginBottom: 20,
+    fontSize: 16,
+  },
+  button: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 25,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#3B1BBF',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

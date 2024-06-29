@@ -1,14 +1,49 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useEffect } from 'react';
 
-export default function Main() {
+export default function Main({route}) {
+
+  
+
+  // Hardcoded student details (example)
   const [name, setName] = useState('');
   const [rollNo, setRollNo] = useState('');
   const [year, setYear] = useState('');
   const [section, setSection] = useState('');
   const [department, setDepartment] = useState('');
-  const [email, setEmail] = useState('');
+  const {email} = route.params
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch('http://10.0.2.2:8000/profile', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: email }), // Assuming email is used as the username
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setName(data.name);
+          setRollNo(data.roll_no);
+          setYear(data.year);
+          setSection(data.section);
+          setDepartment(data.dept);
+        } else {
+          console.error('Error fetching profile:', response.status);
+        }
+      } catch (err) {
+        console.error('Fetch error:', err);
+      }
+    };
+
+    fetchProfile();
+  }, [email]);
+  
+
 
   return (
     <LinearGradient
@@ -18,49 +53,43 @@ export default function Main() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Text style={styles.title}>Student Profile</Text>
         <Image 
-          source={{ uri: 'https://via.placeholder.com/150' }} 
+          source={{ uri: 'st.jpeg' }} 
           style={styles.image}
         />
         <TextInput
           style={styles.input}
           placeholder="Name"
           value={name}
-          onChangeText={setName}
           placeholderTextColor="#ddd"
         />
         <TextInput
           style={styles.input}
           placeholder="Roll Number"
           value={rollNo}
-          onChangeText={setRollNo}
           placeholderTextColor="#ddd"
         />
         <TextInput
           style={styles.input}
           placeholder="Year"
           value={year}
-          onChangeText={setYear}
           placeholderTextColor="#ddd"
         />
         <TextInput
           style={styles.input}
           placeholder="Section"
           value={section}
-          onChangeText={setSection}
           placeholderTextColor="#ddd"
         />
         <TextInput
           style={styles.input}
           placeholder="Department"
           value={department}
-          onChangeText={setDepartment}
           placeholderTextColor="#ddd"
         />
         <TextInput
           style={styles.input}
           placeholder="Email"
           value={email}
-          onChangeText={setEmail}
           placeholderTextColor="#ddd"
         />
       </ScrollView>
@@ -98,14 +127,12 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   input: {
-    width: '90%',
-    padding: 15,
-    marginVertical: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    borderRadius: 25,
-    borderWidth: 1,
-    borderColor: '#ddd',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    width: '100%',
+    padding: 10,
+    borderRadius: 5,
     color: '#fff',
+    marginBottom: 10,
     fontSize: 16,
   },
 });

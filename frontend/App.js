@@ -9,6 +9,7 @@ import Main from './Main';
 import Login from './Login';
 
 import NavMain from './NavMain';
+import TeacherAssignment from './TeacherAssignment';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="Main" component={NavMain} options={{ headerShown: false }} />
+        <Stack.Screen name="TeacherAssignment" component={TeacherAssignment} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
